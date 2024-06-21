@@ -1,0 +1,45 @@
+{
+  "name": "@nitrots/nitro-renderer",
+  "description": "Javascript library for rendering Nitro in the browser using PixiJS",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/billsonnn/nitro-renderer.git"
+  },
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/billsonnn/nitro-renderer/issues"
+  },
+  "homepage": "https://github.com/billsonnn/nitro-renderer",
+  "scripts": {
+    "build": "vite build",
+    "compile": "tsc --project ./tsconfig.json --noEmit false",
+    "eslint": "eslint ./src --fix"
+  },
+  "main": "./index",
+  "dependencies": {
+    "howler": "^2.2.4",
+    "pako": "^2.1.0",
+    "pixi-filters": "^6.0.0",
+    "pixi.js": "^8.1.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/howler": "^2.2.11",
+    "@types/pako": "^2.0.3",
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "@typescript-eslint/parser": "^7.1.1",
+    "eslint": "^8.57.0",
+    "tslib": "^2.3.1",
+    "typescript": "~5.4.2",
+    "vite": "^5.1.3"
+  }
+}
