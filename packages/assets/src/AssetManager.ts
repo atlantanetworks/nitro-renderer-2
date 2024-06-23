@@ -113,7 +113,7 @@ export class AssetManager implements IAssetManager
                         {
                             const texture = TextureUtils.generateTextureFromImage(image);
 
-                            this.setTexture(url, texture); 
+                            this.setTexture(url, texture);
                             resolve(true);
                         };
                     });
@@ -136,6 +136,25 @@ export class AssetManager implements IAssetManager
             return true;
         }
 
+        catch (err)
+        {
+            NitroLogger.error(err);
+
+            return false;
+        }
+    }
+
+    public async loadFromBuffer(buffer: ArrayBuffer)
+    {
+        try
+        {
+            if (!buffer) return false;
+            const nitroBundle = await NitroBundle.from(buffer);
+
+            await this.processAsset(nitroBundle.texture, nitroBundle.jsonFile as IAssetData);
+
+            return true;
+        }
         catch (err)
         {
             NitroLogger.error(err);
