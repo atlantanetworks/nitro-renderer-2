@@ -151,9 +151,7 @@ export class AssetManager implements IAssetManager
             if (!buffer) return false;
             const nitroBundle = await NitroBundle.from(buffer);
 
-            await this.processAsset(nitroBundle.texture, nitroBundle.jsonFile as IAssetData);
-
-            return true;
+            return await this.processAssetB(nitroBundle.texture, nitroBundle.jsonFile as IAssetData);
         }
         catch (err)
         {
@@ -161,6 +159,22 @@ export class AssetManager implements IAssetManager
 
             return false;
         }
+    }
+
+    public async processAssetB(texture: Texture, data: IAssetData): Promise<IGraphicAssetCollection>
+    {
+        let spritesheet: Spritesheet<SpritesheetData> = null;
+
+        if (texture && data?.spritesheet && Object.keys(data.spritesheet).length)
+        {
+            spritesheet = new Spritesheet(texture, data.spritesheet);
+
+            await spritesheet.parse();
+
+            spritesheet.textureSource.label = data.name ?? null;
+        }
+
+        return this.createCollection(data, spritesheet);
     }
 
     private async processAsset(texture: Texture, data: IAssetData): Promise<void>
